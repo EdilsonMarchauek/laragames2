@@ -25,7 +25,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = $this->repository->orderBy('title', 'ASC')->paginate();
+        $categories = $this->repository->orderBy('title', 'ASC')->paginate(50);
         
         return view('admin.categories.index', compact('categories'));
     }

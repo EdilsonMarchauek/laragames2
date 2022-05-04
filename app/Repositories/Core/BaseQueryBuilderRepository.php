@@ -53,7 +53,7 @@ class BaseQueryBuilderRepository implements RepositoryInterface
                         ->first();
     }
 
-    public function paginate($totalPage = 10)
+    public function paginate($totalPage = 50)
     {
         return $this->db
                     ->table($this->tb)

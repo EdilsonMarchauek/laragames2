@@ -39,6 +39,6 @@ class EloquentProductRepository extends BaseEloquentRepository implements Produc
                             })
                             //->toSql();
                             //dd($products);
-                            ->paginate();
+                            ->paginate(50);
     }
 }

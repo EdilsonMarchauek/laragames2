@@ -30,7 +30,7 @@ class QueryBuilderCategoryRepository extends BaseQueryBuilderRepository implemen
                             }
                         })
                         ->orderBy('id', 'desc')
-                        ->paginate();
+                        ->paginate(50);
     }
 
     //Poliformismo

@@ -30,6 +30,6 @@ class EloquentCategoryRepository extends BaseEloquentRepository implements Categ
                     }
                 })
                 ->orderBy('id', 'desc')
-                ->paginate();     
+                ->paginate(50);     
     }
 }

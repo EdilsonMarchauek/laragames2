@@ -39,7 +39,6 @@
                     <th scope="col" width="100">Imagem</th>
                     <th scope="col">Nome</th>
                     <th scope="col">Console</th>
-                    <th scope="col">Descrição</th>
                     <th width="150px" scope="col">Ações</th>
                 </tr>                   
             </thead>
@@ -48,13 +47,13 @@
                 <tr>
                     <td valign="center">
                         @if ($product->photo)
-                                    <img width="130" height="165" src="{{ URL("storage/{$product->photo}") }}" alt="{{ $product->name }}">
+                        <a style="text-decoration:none" href="{{ route('site.show', $product->id)}}">
+                        <img width="130" height="165" src="{{ URL("storage/{$product->photo}") }}" alt="{{ $product->name }}"></a>
                         @endif
                     </td>
                     <td style="vertical-align:middle;">{{ $product->name }}</td>
                     <td style="vertical-align:middle;">{{ $product->category->title??null }}</td>
-                    <td style="vertical-align:middle;">{{ $product->description }}</td>
-                    <td>
+                    <td style="vertical-align:middle;">
                         <a style="text-decoration:none" href="{{ route('site.show', $product->id)}}">
                             Detalhes
                         </a>
