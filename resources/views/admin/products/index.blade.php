@@ -54,7 +54,7 @@
                             <th scope="col" width="100">Imagem</th>
                             <th scope="col">Nome</th>
                             <th scope="col">Console</th>
-                            <th width="150px" scope="col">Ações</th>
+                            <th width="200px" scope="col">Ações</th>
                         </tr>                   
                     </thead>
                     <tbody>
@@ -69,10 +69,10 @@
                             <td style="vertical-align:middle;">{{ $product->name }}</td>
                             <td style="vertical-align:middle;">{{ $product->category->title??null }}</td>
                             <td style="vertical-align:middle;">
-                                <a style="text-decoration:none" href="{{ route('products.edit', $product->id)}}" class="badge bg-gradient-yellow">
+                                <a style="text-decoration:none" href="{{ route('products.edit', $product->id)}}" class="btn btn-outline-primary">
                                     Editar
                                 </a>
-                                <a style="text-decoration:none" href="{{ route('products.show', $product->id)}}" class="badge badge-secondary">
+                                <a style="text-decoration:none" href="{{ route('products.show', $product->id)}}" class="btn btn-outline-secondary">
                                     Detalhes
                                 </a>
                             </td>

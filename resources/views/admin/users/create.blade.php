@@ -8,7 +8,7 @@
     </span>
 
     <ol class="breadcrumb float-sm-right">
-        <li class="breadcrumb-item"><a href="{{ route('home') }}"> Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('admin') }}"> Dashboard</a></li>
         <li class="breadcrumb-item"><a href="{{ route('users.index') }}"> Usuários</a></li>
         <li class="breadcrumb-item"><a href="{{ route('users.create') }}"> Cadastrar</a></li>
     </ol> 

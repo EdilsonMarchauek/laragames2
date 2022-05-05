@@ -9,7 +9,7 @@
     </span>
   
     <ol class="breadcrumb float-sm-right">
-        <li class="breadcrumb-item"><a href="{{ route('home') }}"> Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('admin') }}"> Dashboard</a></li>
         <li class="breadcrumb-item"><a href="{{ route('users.index') }}"> Usuários</a></li>        
     </ol>   
 @stop
@@ -43,7 +43,7 @@
                         <tr>
                             <th scope="col">Nome</th>
                             <th scope="col">E-mail</th>
-                            <th width="150px" scope="col">Ações</th>
+                            <th width="250px" scope="col">Ações</th>
                         </tr>                   
                     </thead>
                     <tbody>
@@ -52,10 +52,10 @@
                             <th scope="row">{{ $user->name }}</th>
                             <td>{{ $user->email }}</td>
                             <td>
-                                <a href="{{ route('users.edit', $user->id) }}" class="badge bg-yellow">
+                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-outline-primary">
                                     Editar
                                 </a>
-                                <a href="{{ route('users.show', $user->id) }}" class="badge bg-primary">
+                                <a href="{{ route('users.show', $user->id) }}" class="btn btn-outline-secondary">
                                     Detalhes
                                 </a>
                             </td>

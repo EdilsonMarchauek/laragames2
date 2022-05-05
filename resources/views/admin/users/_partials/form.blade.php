@@ -9,5 +9,5 @@
     <input type="password" value="{{ old('password') }}" name="password" class="form-control" placeholder="Senha">
 </div>
 <div class="form-group">
-    <button type="submit" class="btn btn-success">Enviar</button>
+    <button type="submit" class="btn btn-primary">Enviar</button>
 </div>

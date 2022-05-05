@@ -9,5 +9,5 @@
    <textarea type="text" name="description" class="form-control" cols="30" rows="10" placeholder="Descrição">{{ $category->description ?? old('description') }}</textarea>
 </div>
 <div class="form-group">
-    <button type="submit" class="btn btn-success">Enviar</button>
+    <button type="submit" class="btn btn-primary">Enviar</button>
 </div>

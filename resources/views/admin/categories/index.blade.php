@@ -41,7 +41,7 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Console</th>
-                            <th width="150px" scope="col">Ações</th>
+                            <th width="200px" scope="col">Ações</th>
                         </tr>                   
                     </thead>
                     <tbody>
@@ -50,10 +50,10 @@
                             <th scope="row">{{ $category->id }}</th>
                             <td style="vertical-align:middle;">{{ $category->title }}</td>
                             <td style="vertical-align:middle;">
-                                <a style="text-decoration:none" href="{{ route('categories.edit', $category->id) }}" class="badge bg-yellow">
+                                <a style="text-decoration:none" href="{{ route('categories.edit', $category->id) }}" class="btn btn-outline-primary">
                                     Editar
                                 </a>
-                                <a style="text-decoration:none" href="{{ route('categories.show', $category->id) }}" class="badge bg-primary">
+                                <a style="text-decoration:none" href="{{ route('categories.show', $category->id) }}" class="btn btn-outline-secondary">
                                     Detalhes
                                 </a>
                             </td>
