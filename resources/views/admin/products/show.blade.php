@@ -3,9 +3,7 @@
 @section('title', 'Detalhes do jogo { $product->name }')
 
 @section('content_header')
-    <span style="font-size: 20px;">
-        Jogo: {{ $product->name }}
-    </span>
+  
 
     <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="{{ route('admin') }}"> Dashboard</a></li>
@@ -16,33 +14,27 @@
 
 @section('content')
 
-    <div align="left">
+<div class="container">
+
+    <div class="float-sm-start" style="padding-right:5%;">
         @if ($product->photo)
-        <img width="130" height="165" src="{{ URL("storage/{$product->photo}") }}" alt="{{ $product->name }}">
+        <img src="{{ URL("storage/{$product->photo}") }}" alt="{{ $product->name }}">
         @endif
-    </div>
-    
-    <hr>
-
-    <div class="content row">
-        <div class="box">
-            <div class="box-body">
-                <p><strong>ID: </strong>{{ $product->id }}</p>
-                <p><strong>Nome: </strong>{{ $product->name }}</p>
-                <p><strong>Console: </strong>{{ $product->category->title }}</p>
-                <p><strong>Descrição: </strong>{{ $product->description }}</p>
-
-                <hr>
-
-                <form action="{{ route('products.destroy', $product->id) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">
-                        Deletar o Produto: {{ $product->name }}</button>               
-                </form>
-            </div>
-        </div>
-    </div>
+    </div><br>
+    <div class="float-md-start">
+        <p style="font-size: 20px;">Jogo:</p>
+        <p><strong>Nome: </strong>{{ $product->name }}</p>
+        <p><strong>ID: </strong>{{ $product->id }}</p>
+        <p><strong>Console: </strong>{{ $product->category->title }}</p>
+        <p><strong>Descrição: </strong>{{ $product->description }}</p><br>
+        <form action="{{ route('products.destroy', $product->id) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <a type="button" href="{{ route('site.inicio') }}" class="btn btn-success">Voltar</a> 
+            <button type="submit" class="btn btn-danger">
+                Deletar {{ $product->name }}</button>  
+        </form>       
+    </div><br>
 @stop
 
 @section('css')

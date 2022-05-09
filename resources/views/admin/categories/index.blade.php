@@ -50,10 +50,10 @@
                             <th scope="row">{{ $category->id }}</th>
                             <td style="vertical-align:middle;">{{ $category->title }}</td>
                             <td style="vertical-align:middle;">
-                                <a style="text-decoration:none" href="{{ route('categories.edit', $category->id) }}" class="btn btn-outline-primary">
+                                <a style="text-decoration:none" href="{{ route('categories.edit', $category->id) }}" class="btn btn-outline-primary btn-sm">
                                     Editar
                                 </a>
-                                <a style="text-decoration:none" href="{{ route('categories.show', $category->id) }}" class="btn btn-outline-secondary">
+                                <a style="text-decoration:none" href="{{ route('categories.show', $category->id) }}" class="btn btn-outline-secondary btn-sm">
                                     Detalhes
                                 </a>
                             </td>

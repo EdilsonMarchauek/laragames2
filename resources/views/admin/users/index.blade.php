@@ -52,10 +52,10 @@
                             <th scope="row">{{ $user->name }}</th>
                             <td>{{ $user->email }}</td>
                             <td>
-                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-outline-primary">
+                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-outline-primary btn-sm">
                                     Editar
                                 </a>
-                                <a href="{{ route('users.show', $user->id) }}" class="btn btn-outline-secondary">
+                                <a href="{{ route('users.show', $user->id) }}" class="btn btn-outline-secondary btn-sm">
                                     Detalhes
                                 </a>
                             </td>

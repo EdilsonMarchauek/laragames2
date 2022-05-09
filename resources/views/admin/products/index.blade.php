@@ -48,7 +48,7 @@
 
                 @include('admin.includes.alerts')
                 
-                <table class="table table-striped">
+                <table class="table table-striped table-hover">
                     <thead>
                         <tr>
                             <th scope="col" width="100">Imagem</th>
@@ -69,10 +69,10 @@
                             <td style="vertical-align:middle;">{{ $product->name }}</td>
                             <td style="vertical-align:middle;">{{ $product->category->title??null }}</td>
                             <td style="vertical-align:middle;">
-                                <a style="text-decoration:none" href="{{ route('products.edit', $product->id)}}" class="btn btn-outline-primary">
+                                <a style="text-decoration:none" href="{{ route('products.edit', $product->id)}}" class="btn btn-outline-primary btn-sm">
                                     Editar
                                 </a>
-                                <a style="text-decoration:none" href="{{ route('products.show', $product->id)}}" class="btn btn-outline-secondary">
+                                <a style="text-decoration:none" href="{{ route('products.show', $product->id)}}" class="btn btn-outline-secondary btn-sm">
                                     Detalhes
                                 </a>
                             </td>

@@ -3,12 +3,12 @@
 @section('title', 'Gestão de Jogos')
 
 @section('content')
-<div class="content row">
-    
+
+<div class="content row"> 
+   
 <h3><br>Lista de jogos</h3>  
 
 <hr> 
-
     <form action="{{ route('site.search')}}" method="POST" class="form form-inline">
         @csrf
         <div class="input-group" style="max-width:400px;">
@@ -30,8 +30,8 @@
     
     <div class="card card-outline card-success">
     <div class="box-body">    
-        <table class="table table-striped" style="margin-top: 20px">
-            <thead>
+        <table class="table table-striped table-hover rounded-top" style="margin-top: 20px">
+            <thead style="border-bottom: #f8f8f8;">
                 <tr>
                     <th scope="col" width="100">Imagem</th>
                     <th scope="col">Nome</th>
@@ -39,7 +39,7 @@
                     <th width="150px" scope="col">Ações</th>
                 </tr>                   
             </thead>
-            <tbody>
+            <tbody class="border border-white">
                 @foreach ($products as $product)
                 <tr>
                     <td valign="center">
@@ -51,7 +51,7 @@
                     <td style="vertical-align:middle;">{{ $product->name }}</td>
                     <td style="vertical-align:middle;">{{ $product->category->title??null }}</td>
                     <td style="vertical-align:middle;">
-                        <a class="btn btn-outline-primary" href="{{ route('site.show', $product->id)}}">
+                        <a class="btn btn-outline-primary btn-sm" href="{{ route('site.show', $product->id)}}">
                             Detalhes
                         </a>
                     </td>
@@ -69,15 +69,4 @@
     </div>
   </div> 
 </div>
-
 @stop
-
-@section('css')
-    <link href="/css/app.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/css/adminlte.min.css" rel="stylesheet">
-@stop
-
-@section('js')
-    <script src="/js/app.js"></script>
-@stop
-

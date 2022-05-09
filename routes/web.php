@@ -46,11 +46,8 @@ Route::get('/teste', function () {
  });
 
  Route::get('/clear', function() {
-
     Artisan::call('cache:clear');
-    
     dd("Cache Clear All");
-
 });
 
 
