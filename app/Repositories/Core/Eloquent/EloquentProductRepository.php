@@ -20,22 +20,37 @@ class EloquentProductRepository extends BaseEloquentRepository implements Produc
         return $this->entity
                             ->with('category')
                             ->where(function ($query) use($request) {
+
+                                $location1 = Product::where('category_id', $request->category)
+                                                        ->get()
+                                                        ->first();
+                                                                                             
+                                $location2 = Product::where('name', 'LIKE', "%{$request->name}%")
+                                                        ->get()
+                                                        ->first();
+
+                                if(isset($location1) && isset($location2)){
+                                    $um = $location1->category_id;                        
+                                    $dois = $location2->category_id;
+
+                                    if($um == $dois){   
+                                        $query->where( 'name', 'LIKE', "%{$request->name}%");
+                                    }  
+                                }
+
                                 //verifica se foi preenchido
                                 if ($request->name){
                                         $filter = $request->name;
                                         $query->where(function ($querysub) use ($filter) {
                                         $querysub->where( 'name', 'LIKE', "%{$filter}%")
                                                  ->orWhere('description', 'LIKE', "%{$filter}%");
-                                    });    
-                                }
+                                     });    
+                                } 
 
-                                if ($request->price){
-                                    $query->where('price', $request->price);
-                                }   
-                                
                                 if ($request->category){
-                                    $query->orWhere('category_id', $request->category);
-                                }   
+                                        $query->where('category_id', $request->category);
+                                }    
+                               
                             })
                             //->toSql();
                             //dd($products);

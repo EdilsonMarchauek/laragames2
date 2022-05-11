@@ -17,7 +17,7 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     
         <!-- Styles -->
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet"> 
     </head>
     <body>
         <div id="app">
@@ -84,17 +84,18 @@
             </div>
         </nav>
 
+    <!-- Carosel -->
     <div class="container">
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img src="{{URL::asset('/imgs/banner.jpg')}}" class="d-block w-100" alt="...">
+                <img src="{{URL::asset('/imgs/banner1.jpg')}}" class="d-block w-100" alt="Luna Design">
               </div>
               <div class="carousel-item">
-                <img src="{{URL::asset('/imgs/banner.jpg')}}" class="d-block w-100" alt="...">
+                <img src="{{URL::asset('/imgs/banner2.jpg')}}" class="d-block w-100" alt="Luna Design">
               </div>
               <div class="carousel-item">
-                <img src="{{URL::asset('/imgs/banner.jpg')}}" class="d-block w-100" alt="...">
+                <img src="{{URL::asset('/imgs/banner3.jpg')}}" class="d-block w-100" alt="Luna Design">
               </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">

@@ -5,11 +5,12 @@
 @section('content')
 
 <div class="content row"> 
-   
-<h3><br>Lista de jogos</h3>  
+    <h3><br>Lista de jogos</h3>  
 
-<hr> 
-    <form action="{{ route('site.search')}}" method="POST" class="form form-inline">
+    <hr> 
+
+    <div class="content">
+    <form action="{{ route('site.search')}}" method="POST" class="form form-inline" style="margin-bottom: 10px;">
         @csrf
         <div class="input-group" style="max-width:400px;">
             <select name="category" class="form-control">
@@ -25,48 +26,32 @@
             <button type="submit" class="btn btn-success">Pesquisar</button>
         </div>
     </form>  
+    </div>
 
     @include('admin.includes.alerts')
-    
-    <div class="card card-outline card-success">
-    <div class="box-body">    
-        <table class="table table-striped table-hover rounded-top" style="margin-top: 20px">
-            <thead style="border-bottom: #f8f8f8;">
-                <tr>
-                    <th scope="col" width="100">Imagem</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Console</th>
-                    <th width="150px" scope="col">Ações</th>
-                </tr>                   
-            </thead>
-            <tbody class="border border-white">
-                @foreach ($products as $product)
-                <tr>
-                    <td valign="center">
-                        @if ($product->photo)
-                        <a style="text-decoration:none" href="{{ route('site.show', $product->id)}}">
-                        <img width="130" height="165" src="{{ URL("storage/{$product->photo}") }}" alt="{{ $product->name }}"></a>
-                        @endif
-                    </td>
-                    <td style="vertical-align:middle;">{{ $product->name }}</td>
-                    <td style="vertical-align:middle;">{{ $product->category->title??null }}</td>
-                    <td style="vertical-align:middle;">
-                        <a class="btn btn-outline-primary btn-sm" href="{{ route('site.show', $product->id)}}">
-                            Detalhes
-                        </a>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-            </table>
-            
-            {{-- Verifica se existe a variável filters do método search passando pra cá appends($filters)--}}
-            @if (isset($filters))
-                {!! $products->appends($filters)->links("pagination::bootstrap-4") !!} 
-            @else
-                {!! $products->links("pagination::bootstrap-4") !!} 
+ 
+   
+   @foreach ($products as $product)
+        <div class="card mx-auto" style="width: 12rem; margin:7px;" >
+            @if ($product->photo)
+            <a style="text-decoration:none" href="{{ route('site.show', $product->id)}}"><img style="max-width: 100%; height: auto;" src="{{ URL("storage/{$product->photo}") }}" class="card-img-top" alt="{{ $product->name }}"></a>
             @endif
-    </div>
-  </div> 
+            <div class="card-body">
+                <h5 class="card-title">{{ $product->category->title??null }}</h5>
+                <p class="card-text" style="max-height:50px;">{{ $product->name }}</p>    
+            </div>
+            <span style="text-align:center; display:block;"><a class="btn btn-outline-primary btn-sm" href="{{ route('site.show', $product->id)}}">
+            Detalhes</a></span>
+        </div>  
+    @endforeach
+
 </div>
+ 
+        {{-- Verifica se existe a variável filters do método search passando pra cá appends($filters)--}}
+        @if (isset($filters))
+            {!! $products->appends($filters)->links("pagination::bootstrap-4") !!} 
+        @else
+            {!! $products->links("pagination::bootstrap-4") !!} 
+        @endif
+    
 @stop
