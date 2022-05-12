@@ -11,6 +11,8 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 
+use App\Http\Controllers\ImagesController;
+
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 
     Route::any('users/search', [UserController::class, 'search'])->name('users.search');
@@ -31,7 +33,11 @@ Auth::routes(['register' => false]);
 Route::get('/', [SiteController::class, 'index']);
 Route::any('/search', [SiteController::class, 'search'])->name('site.search');
 Route::resource('site', SiteController::class);
-Route::get('/inicio', [SiteController::class, 'index'])->name('site.inicio');;
+Route::get('/inicio', [SiteController::class, 'index'])->name('site.inicio');
+
+//Rota de Imagens
+Route::get('/images', [ImagesController::class, 'index']);
+Route::get('/insert-image', [ImagesController::class, 'insertImage']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
