@@ -36,7 +36,7 @@ Route::resource('site', SiteController::class);
 Route::get('/inicio', [SiteController::class, 'index'])->name('site.inicio');
 
 //Rota de Imagens
-Route::get('/images', [ImagesController::class, 'index']);
+Route::get('/images', [ImagesController::class, 'show']);
 Route::get('/insert-image', [ImagesController::class, 'insertImage']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

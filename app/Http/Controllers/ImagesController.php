@@ -8,14 +8,11 @@ use Illuminate\Http\Request;
 
 class ImagesController extends Controller
 {
-    public function index()
+    public function show()
     {
         //$produto = Product::where('name', 'teste')->get()->first();
         //echo $produto->name;
         //echo $produto->id;
-
-        // echo $produto->name;
-        // echo $produto->id;
 
         // $imagem = $produto->imageProduct()->get();
 
@@ -23,8 +20,13 @@ class ImagesController extends Controller
         //     echo "<hr>{$img->image}";
         // }
         
-        $keySearch = 'e';
-        $produtos = Product::where('name', 'LIKE', "%{$keySearch}%")->with('imageProduct')->get();
+        //$keySearch = 'e';
+        //$produtos = Product::where('name', 'LIKE', "%{$keySearch}%")->with('imageProduct')->get();
+
+        $pps = Product::all()->count();
+        echo $pps . '<br>';
+
+        $produtos = Product::all();
 
         foreach($produtos as $produto){
 

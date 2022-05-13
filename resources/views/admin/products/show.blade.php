@@ -30,7 +30,7 @@
         <form action="{{ route('products.destroy', $product->id) }}" method="POST">
             @csrf
             @method('DELETE')
-            <a type="button" href="{{ route('site.inicio') }}" class="btn btn-success">Voltar</a> 
+            <a type="button" href="{{ route('products.index') }}" class="btn btn-success">Voltar</a> 
             <button type="submit" class="btn btn-danger">
                 Deletar {{ $product->name }}</button>  
         </form>       
