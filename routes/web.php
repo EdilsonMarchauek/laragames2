@@ -28,7 +28,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
     Route::get('/', [DashboardController::class, 'index'])->name('admin');
 });
 
-Auth::routes(['register' => false]);
+Auth::routes(['register' => true]);
 
 Route::get('/', [SiteController::class, 'index']);
 Route::any('/search', [SiteController::class, 'search'])->name('site.search');
