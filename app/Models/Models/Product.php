@@ -10,7 +10,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
-    protected $fillable = ['category_id', 'product_id', 'name', 'url', 'description', 'price', 'photo', 'image'];
+    protected $table = 'products';
+
+    protected $fillable = ['category_id', 'name', 'url', 'price', 'photo', 'description'];
 
     public static function boot()
     {
@@ -32,6 +34,6 @@ class Product extends Model
     public function imageProduct()
     {
         // return $this->hasMany(Images::class, 'product_id', 'id'); // nome da chave estrangeira
-        return $this->hasMany(Images::class);
+        return $this->hasMany(Images::class, 'product_id', 'id');
     }
 }

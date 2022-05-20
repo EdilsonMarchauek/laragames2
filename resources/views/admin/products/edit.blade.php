@@ -19,6 +19,33 @@
 @section('content')
 <div class="content row">
 
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        </ol>
+        <div class="carousel-inner">
+            @foreach($images as $key => $slider)
+            <div class="carousel-item {{$key == 0 ? 'active' : '' }}">
+                <img width="800" height="165" src="{{ URL("{$slider->image}") }}" class="d-block w-100"  alt="..."> 
+            </div>
+            @endforeach
+        </div>
+        <a class="carousel-control-prev" href="#myCarousel" role="button"  data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true">     </span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+{{--     
+    @foreach($images as $img)
+        @if ($img->image)
+            <img width="130" height="165" src="{{ URL("{$img->image}") }}" alt="{{ $product->name }}">
+        @endif
+    @endforeach --}}
+
     <div align="left" style="padding-bottom:10px">
         @if ($product->photo)
         <img width="130" height="165" src="{{ URL("storage/{$product->photo}") }}" alt="{{ $product->name }}">

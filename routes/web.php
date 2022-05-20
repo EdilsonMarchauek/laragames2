@@ -1,17 +1,20 @@
 <?php
 
+use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\Admin\UserController;
+
+use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\Admin\ProductController;
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
-
-use App\Http\Controllers\ImagesController;
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 
@@ -55,6 +58,4 @@ Route::get('/teste', function () {
     Artisan::call('cache:clear');
     dd("Cache Clear All");
 });
-
-
 

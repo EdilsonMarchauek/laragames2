@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Models\Models\Category;
+use App\Models\Models\Images;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreUpdateProductFormRequest;
@@ -11,7 +12,6 @@ use App\Repositories\Contracts\ProductRepositoryInterface;
 
 class ProductController extends Controller
 {
-
     protected $repository;
 
     //Injeta o model product no construtor
@@ -54,22 +54,29 @@ class ProductController extends Controller
      * @param  \App\Http\Requests\StoreUpdateProductFormRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreUpdateProductFormRequest $request)
+    public function store(Request $request)
     {
-        /* primeira forma de cadastrar
+        // primeira forma de cadastrar
         $category = Category::find($request->category_id);
         //products() - Models/Category.php
         $product = $category->products()->create($request->all());
-        */
-      
-        if ($request->hasFile('photo') && $request->photo->isValid()){
-        //Em app/config => 'default' => env('FILESYSTEM_DRIVER', 'public'), excluir do .env FILESYSTEM, Criar o link simbólico   
-            $nameFile = $request->name . '.' . $request->photo->extension();    
-            $imagePath = $request->photo->storeAs('products', $nameFile);
-            $data['photo'] = $imagePath;
+
+        foreach ($request->file('image') as $imagefile) {
+            $image = new Images;
+            $path = $imagefile->store("/product-images/{$product->id}", ['disk' =>   'my_files']);
+            $image->image = $path;
+            $image->product_id = $product->id;
+            $image->save();
         }
 
-        $product = $this->repository->store(array_merge($request->all(), $data));
+        // if ($request->hasFile('photo') && $request->photo->isValid()){
+        // //Em app/config => 'default' => env('FILESYSTEM_DRIVER', 'public'), excluir do .env FILESYSTEM, Criar o link simbólico   
+        //     $nameFile = $request->name . '.' . $request->photo->extension();    
+        //     $imagePath = $request->photo->storeAs('products', $nameFile);
+        //     $data['photo'] = $imagePath;
+        // }
+
+        // $product = $this->repository->store(array_merge($request->all(), $data));
         
         return redirect()
                 ->route('products.index')
@@ -106,8 +113,10 @@ class ProductController extends Controller
 
         if(!$product = $this->repository->findById($id))
             return redirect()->back();
+
+        $images = $product->imageProduct()->get(); 
         
-        return view('admin.products.edit', compact('product'));
+        return view('admin.products.edit', compact('product', 'images'));
     }
 
     /**
