@@ -20,23 +20,37 @@
         @if ($product->photo)
         <img class="img-fluid img-thumbnail" src="{{ URL("storage/{$product->photo}") }}" alt="{{ $product->name }}">
         @endif
-    </div><br>
-   
-    <div class="float-md-start">
-      <div class="card border-secondary mb-3" style="max-width: 18rem; border:transparent;">
-          <div class="card-header">ID: {{ $product->id }} - Detalhes</div>
-            <div class="card-body text-secondary">
-              <h5 class="card-title">Jogo: {{ $product->name }}</h5>
-              <p class="card-text"></p>
-              <p class="card-text">Console: {{ $product->category->title }}</p>
-              <p class="card-text">Descrição: {{ $product->description }}</p>
-            </div>
-            <div class="card-footer bg-transparent border-transparent">
-              <button type="button" class="btn" style="background-color: #03a9f4; color: white;" data-bs-toggle="modal" data-bs-target="#exampleModal">Solicitar Orçamento</button>
-              <a href="{{ route('site.inicio') }}" class="btn btn-success">Voltar</a>
-            </div>
-        </div>
-    </div><br>     
+    </div>
+    
+    <div class="float-md-bottom"> 
+      @foreach($images as $img)
+          @if ($img->image)
+              <img width="130" height="165" class="img-fluid img-thumbnail" src="{{ URL("{$img->image}") }}" alt="{{ $product->name }}">
+          @endif
+      @endforeach
+    </div>
+
+  <div class="float-md-start">
+    <div class="card border-secondary mb-3" style="max-width: 18rem; border:transparent;">
+        <div class="card-header">ID: {{ $product->id }} - Detalhes</div>
+          <div class="card-body text-secondary">
+            <h5 class="card-title">Jogo: {{ $product->name }}</h5>
+            <p class="card-text"></p>
+            <p class="card-text">Console: {{ $product->category->title }}</p>
+            <p class="card-text">Descrição: {{ $product->description }}</p>
+          </div>
+          <div class="card-footer bg-transparent border-transparent">
+            <button type="button" class="btn" style="background-color: #03a9f4; color: white;" data-bs-toggle="modal" data-bs-target="#exampleModal">Solicitar Orçamento</button>
+            <a href="{{ route('site.inicio') }}" class="btn btn-success">Voltar</a>
+          </div>
+      </div>
+  </div>
+  
+  
+  
+  
+  
+  <br>   
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -64,6 +78,9 @@
     </div>
   </div>
 </div>    
+
+
+
 @endsection
 
 

@@ -31,8 +31,7 @@ class ProductController extends Controller
         $products = $this->repository
                             ->orderBy('name')
                             ->relationships('category')
-                            ->paginate(50);
-
+                            ->paginate(50);                     
         //Enviando para View
         return view('admin.products.index', compact('products'));
     }
@@ -54,29 +53,30 @@ class ProductController extends Controller
      * @param  \App\Http\Requests\StoreUpdateProductFormRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUpdateProductFormRequest $request)
     {
-        // primeira forma de cadastrar
-        $category = Category::find($request->category_id);
-        //products() - Models/Category.php
-        $product = $category->products()->create($request->all());
 
-        foreach ($request->file('image') as $imagefile) {
-            $image = new Images;
-            $path = $imagefile->store("/product-images/{$product->id}", ['disk' =>   'my_files']);
-            $image->image = $path;
-            $image->product_id = $product->id;
-            $image->save();
+        if ($request->hasFile('photo') && $request->photo->isValid()){
+            //Em app/config => 'default' => env('FILESYSTEM_DRIVER', 'public'), excluir do .env FILESYSTEM, Criar o link simbólico   
+            $nameFile = $request->name . '.' . $request->photo->extension();    
+            $imagePath = $request->photo->storeAs('products', $nameFile);
+            $data['photo'] = $imagePath;
         }
 
-        // if ($request->hasFile('photo') && $request->photo->isValid()){
-        // //Em app/config => 'default' => env('FILESYSTEM_DRIVER', 'public'), excluir do .env FILESYSTEM, Criar o link simbólico   
-        //     $nameFile = $request->name . '.' . $request->photo->extension();    
-        //     $imagePath = $request->photo->storeAs('products', $nameFile);
-        //     $data['photo'] = $imagePath;
-        // }
+         // primeira forma de cadastrar
+         $category = Category::find($request->category_id);
+         //products() - Models/Category.php
+         $product = $category->products()->create(array_merge($request->all(), $data));
 
-        // $product = $this->repository->store(array_merge($request->all(), $data));
+         foreach ($request->file('image') as $imagefile) {
+              $image = new Images;
+              $path = $imagefile->store("/product-images/{$product->id}", ['disk' =>   'my_files']);
+              $image->image = $path;
+              $image->product_id = $product->id;
+              $image->save();
+         }
+
+        //$product = $this->repository->store(array_merge($request->all(), $data));
         
         return redirect()
                 ->route('products.index')
@@ -118,6 +118,7 @@ class ProductController extends Controller
         
         return view('admin.products.edit', compact('product', 'images'));
     }
+    
 
     /**
      * Update the specified resource in storage.
@@ -128,18 +129,28 @@ class ProductController extends Controller
      */
     public function update(StoreUpdateProductFormRequest $request, $id)
     {
-
         if ($request->hasFile('photo') && $request->photo->isValid()){
             $nameFile = $request->name . '.' . $request->photo->extension();    
             $imagePath = $request->photo->storeAs('products', $nameFile);
             $data['photo'] = $imagePath;
         }
-    
+
         if(isset($data)){
             $this->repository->update($id, array_merge($request->all(), $data));
         }else{
             $this->repository->update($id, $request->all());    
         }
+
+        if($request->file('image')){
+        foreach ($request->file('image') as $imagefile) {
+            $image = new Images;
+             $path = $imagefile->store("/product-images/{$id}", ['disk' =>   'my_files']);
+             $image->image = $path;
+             $image->product_id = $id;
+             $image->save();
+        }
+        }
+        //$this->repository->update($id, $request->all()); 
 
         return redirect()
                         ->route('products.index')
@@ -161,7 +172,7 @@ class ProductController extends Controller
         if ($product->photo && Storage::exists($product->photo)) {
             Storage::delete($product->photo);
         }  
-
+        
         $this->repository->delete($id);
 
         return redirect()

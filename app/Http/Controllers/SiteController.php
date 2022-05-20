@@ -42,7 +42,9 @@ class SiteController extends Controller
         if(!$product)
         return redirect()->back();
 
-        return view('site.home.show', compact('product'));
+        $images = $product->imageProduct()->get(); 
+
+        return view('site.home.show', compact('product', 'images'));
     }
 
 }
