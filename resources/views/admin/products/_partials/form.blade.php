@@ -15,9 +15,11 @@
     {{ Form::textarea('description', null, ['placeholder' => 'Descrição', 'rows' => 3, 'class' => 'form-control']) }}
 </div>
 <div class="form-group">
+    {{ Form::label('Capa : ') }}
     {{ Form::file('photo', null, ['class' => 'form-control']) }}
 </div>
 <div class="form-group">
+    {{ Form::label('Fotos: ') }}
     {{ Form::file('image[]', ['multiple' => true]) }}
 </div>
 <div class="form-group">

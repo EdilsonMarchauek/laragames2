@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Models\Models\Category;
 use App\Models\Models\Images;
+use App\Models\Models\Category;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreUpdateProductFormRequest;
 use App\Repositories\Contracts\ProductRepositoryInterface;
@@ -171,7 +173,20 @@ class ProductController extends Controller
 
         if ($product->photo && Storage::exists($product->photo)) {
             Storage::delete($product->photo);
-        }  
+        }   
+
+        function cleanDirectory($path, $recursive = true)
+        {
+            $storage = Storage::disk('my_files');
+
+            foreach($storage->files($path, $recursive) as $file) {
+                $storage->delete($file);
+            }
+        }
+
+        $directory = "/product-images/{$id}";
+
+        cleanDirectory($directory);        
         
         $this->repository->delete($id);
 
