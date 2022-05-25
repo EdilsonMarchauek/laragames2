@@ -46,14 +46,11 @@
         @endif    
         @foreach($images as $img)
             @if ($img->image)
-                <img width="130" height="165" src="{{ URL("{$img->image}") }}" alt="{{ $product->name }}">
+                <img width="130" height="165" src="{{ URL("storage/{$img->image}") }}" alt="{{ $product->name }}">
             @endif
         @endforeach
-        </div>
-
-    <div align="left" style="padding-bottom:10px">
-       
     </div>
+
     
     <div class="card card-outline card-success" >
         <div class="box-body" style="padding: 10px">

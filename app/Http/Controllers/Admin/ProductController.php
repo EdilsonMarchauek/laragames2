@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Models\Images;
 use App\Models\Models\Category;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\File;
-use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreUpdateProductFormRequest;
 use App\Repositories\Contracts\ProductRepositoryInterface;
@@ -72,7 +70,7 @@ class ProductController extends Controller
 
          foreach ($request->file('image') as $imagefile) {
               $image = new Images;
-              $path = $imagefile->store("/product-images/{$product->id}", ['disk' =>   'my_files']);
+              $path = $imagefile->store("product-images/{$product->id}", ['disk' =>   'public']);
               $image->image = $path;
               $image->product_id = $product->id;
               $image->save();
@@ -100,7 +98,9 @@ class ProductController extends Controller
         if(!$product)
         return redirect()->back();
 
-        return view('admin.products.show', compact('product'));
+        $images = $product->imageProduct()->get(); 
+
+        return view('admin.products.show', compact('product', 'images'));
     }
 
     /**
@@ -146,7 +146,7 @@ class ProductController extends Controller
         if($request->file('image')){
         foreach ($request->file('image') as $imagefile) {
             $image = new Images;
-             $path = $imagefile->store("/product-images/{$id}", ['disk' =>   'my_files']);
+             $path = $imagefile->store("/product-images/{$id}", ['disk' =>   'public']);
              $image->image = $path;
              $image->product_id = $id;
              $image->save();
@@ -157,8 +157,8 @@ class ProductController extends Controller
         return redirect()
                         ->route('products.index')
                         ->withSuccess('Cadastro atualizado com sucesso');
-    }
-
+        }    
+    
     /**
      * Remove the specified resource from storage.
      *
@@ -168,31 +168,23 @@ class ProductController extends Controller
     public function destroy($id)
     {       
         $product = $this->repository->findById($id);
-        if(!$product)
-          return redirect()->back();
+         if(!$product)
+           return redirect()->back();
 
-        if ($product->photo && Storage::exists($product->photo)) {
-            Storage::delete($product->photo);
-        }   
+         if ($product->photo && Storage::exists($product->photo)) {
+             Storage::delete($product->photo);
+        }    
 
-        function cleanDirectory($path, $recursive = true)
-        {
-            $storage = Storage::disk('my_files');
+        $directory = ("storage/public/product-images/{$id}");
+        $this->repository->cleanDirectory($directory);        
 
-            foreach($storage->files($path, $recursive) as $file) {
-                $storage->delete($file);
-            }
-        }
+        Storage::disk('public')->deleteDirectory("/product-images/{$id}");
 
-        $directory = "/product-images/{$id}";
-
-        cleanDirectory($directory);        
-        
         $this->repository->delete($id);
 
         return redirect()
-                ->route('products.index')
-                ->withSuccess('Cadastro deletado com sucesso');
+                 ->route('products.index')
+                 ->withSuccess('Cadastro deletado com sucesso');
     }
 
     public function search(Request $request)

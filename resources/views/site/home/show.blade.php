@@ -16,41 +16,48 @@
 
 @section('content')
 
-    <div class="float-sm-start" style="padding-right:3%;">
-        @if ($product->photo)
-        <img class="img-fluid img-thumbnail" src="{{ URL("storage/{$product->photo}") }}" alt="{{ $product->name }}">
-        @endif
-    </div>
-    
-    <div class="float-md-bottom"> 
-      @foreach($images as $img)
-          @if ($img->image)
-              <img width="130" height="165" class="img-fluid img-thumbnail" src="{{ URL("{$img->image}") }}" alt="{{ $product->name }}">
-          @endif
-      @endforeach
-    </div>
-
-  <div class="float-md-start">
-    <div class="card border-secondary mb-3" style="max-width: 18rem; border:transparent;">
-        <div class="card-header">ID: {{ $product->id }} - Detalhes</div>
-          <div class="card-body text-secondary">
-            <h5 class="card-title">Jogo: {{ $product->name }}</h5>
-            <p class="card-text"></p>
-            <p class="card-text">Console: {{ $product->category->title }}</p>
-            <p class="card-text">Descrição: {{ $product->description }}</p>
+<div class="float-sm-start" style="padding-right:5%;">
+  <div id="myCarousel" class="carousel slide" data-ride="carousel" width="300">
+      <ol class="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      </ol>
+      <div class="carousel-inner" style="max-width:300px;">
+          @foreach($images as $key => $slider)
+          <div class="carousel-item {{$key == 0 ? 'active' : '' }}">
+              <img src="{{ URL("storage/{$slider->image}") }}" class="d-blockw-30 "  alt="{{ URL("{$product->name}") }}"> 
           </div>
-          <div class="card-footer bg-transparent border-transparent">
-            <button type="button" class="btn" style="background-color: #03a9f4; color: white;" data-bs-toggle="modal" data-bs-target="#exampleModal">Solicitar Orçamento</button>
-            <a href="{{ route('site.inicio') }}" class="btn btn-success">Voltar</a>
-          </div>
+          @endforeach
       </div>
-  </div>
-  
-  
-  
-  
-  
-  <br>   
+      <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"> </span>
+          <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+      </a>
+  </div><br>
+</div> 
+
+<div class="float-md-start">
+  @if ($product->photo)
+  <img width="130" height="165" class="img-fluid img-thumbnail" src="{{ URL("storage/{$product->photo}") }}" alt="{{ $product->name }}">
+  @endif
+  <div class="card border-secondary mb-3" style="max-width: 18rem; border:transparent;">
+      <div class="card-header">ID: {{ $product->id }} - Detalhes</div>
+        <div class="card-body text-secondary">
+          <h5 class="card-title">Jogo: {{ $product->name }}</h5>
+          <p class="card-text"></p>
+          <p class="card-text">Console: {{ $product->category->title }}</p>
+          <p class="card-text">Descrição: {{ $product->description }}</p>
+        </div>
+        <div class="card-footer bg-transparent border-transparent">
+          <button type="button" class="btn" style="background-color: #03a9f4; color: white;" data-bs-toggle="modal" data-bs-target="#exampleModal">Solicitar Orçamento</button>
+          <a href="{{ route('site.inicio') }}" class="btn btn-success">Voltar</a>
+        </div>
+    </div>
+</div>
+<br>   
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -78,8 +85,6 @@
     </div>
   </div>
 </div>    
-
-
 
 @endsection
 

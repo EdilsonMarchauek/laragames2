@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Core;
 
+use Illuminate\Support\Facades\Storage;
 use App\Repositories\Exceptions\NotEntityDefined;
 use App\Repositories\Contracts\RepositoryInterface;
 
@@ -76,6 +77,15 @@ class BaseEloquentRepository implements RepositoryInterface
         return $this;
     }
 
+    function cleanDirectory($path, $recursive = true)
+    {
+        $storage = Storage::disk('my_files');
+
+        foreach($storage->files($path, $recursive) as $file) {
+            $storage->delete($file);
+        }
+    }
+
     public function resolveEntity()
     {
         if (!method_exists($this, 'entity')) {
@@ -84,4 +94,5 @@ class BaseEloquentRepository implements RepositoryInterface
 
         return app($this->entity());
     }
+
 }
