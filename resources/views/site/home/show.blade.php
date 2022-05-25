@@ -17,22 +17,22 @@
 @section('content')
 
 <div class="float-sm-start" style="padding-right:5%;">
-  <div id="myCarousel" class="carousel slide" data-ride="carousel" width="300">
+  <div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel" width="300" style="background-color:blue;">
       <ol class="carousel-indicators">
           <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
       </ol>
       <div class="carousel-inner" style="max-width:300px;">
           @foreach($images as $key => $slider)
           <div class="carousel-item {{$key == 0 ? 'active' : '' }}">
-              <img src="{{ URL("storage/{$slider->image}") }}" class="d-blockw-30 "  alt="{{ URL("{$product->name}") }}"> 
+              <img src="{{ URL("storage/{$slider->image}") }}" class="d-block w-110" alt="{{ URL("{$product->name}") }}"> 
           </div>
           @endforeach
       </div>
-      <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+      <a class="carousel-control-prev" href="#myCarousel" role="button"  data-slide="prev"> 
           <span class="carousel-control-prev-icon" aria-hidden="true"> </span>
           <span class="sr-only">Previous</span>
       </a>
-      <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+      <a class="carousel-control-next" href="#myCarousel" role="button"  data-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
       </a>
@@ -40,9 +40,9 @@
 </div> 
 
 <div class="float-md-start">
-  @if ($product->photo)
-  <img width="130" height="165" class="img-fluid img-thumbnail" src="{{ URL("storage/{$product->photo}") }}" alt="{{ $product->name }}">
-  @endif
+    @if ($product->photo)
+    <img width="130" height="165" class="img-fluid img-thumbnail" src="{{ URL("storage/{$product->photo}") }}" alt="{{ $product->name }}">
+    @endif
   <div class="card border-secondary mb-3" style="max-width: 18rem; border:transparent;">
       <div class="card-header">ID: {{ $product->id }} - Detalhes</div>
         <div class="card-body text-secondary">

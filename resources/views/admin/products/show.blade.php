@@ -16,7 +16,7 @@
 
 <div class="container">
     <div class="float-sm-start" style="padding-right:5%;">
-        <div id="myCarousel" class="carousel slide" data-ride="carousel" width="300">
+        <div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel" width="300">
             <ol class="carousel-indicators">
                 <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
             </ol>
