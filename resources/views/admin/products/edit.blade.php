@@ -41,9 +41,13 @@
     </div> --}}
     
     <div align="left" style="padding-bottom:10px">
+    <hr>      
+        Capa:
         @if ($product->photo)
         <img width="130" height="165" src="{{ URL("storage/{$product->photo}") }}" alt="{{ $product->name }}">
-        @endif    
+        @endif 
+    <hr>      
+        Fotos:   
         @foreach($images as $img)
             @if ($img->image)
                 <img width="130" height="165" src="{{ URL("storage/{$img->image}") }}" alt="{{ $product->name }}">
@@ -51,6 +55,7 @@
         @endforeach
     </div>
 
+    <hr>
     
     <div class="card card-outline card-success" >
         <div class="box-body" style="padding: 10px">

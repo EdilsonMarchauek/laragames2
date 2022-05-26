@@ -68,12 +68,14 @@ class ProductController extends Controller
          //products() - Models/Category.php
          $product = $category->products()->create(array_merge($request->all(), $data));
 
-         foreach ($request->file('image') as $imagefile) {
-              $image = new Images;
-              $path = $imagefile->store("product-images/{$product->id}", ['disk' =>   'public']);
-              $image->image = $path;
-              $image->product_id = $product->id;
-              $image->save();
+         if($request->file('image') && isset($request->image)){
+            foreach ($request->file('image') as $imagefile) {
+                $image = new Images;
+                $path = $imagefile->store("product-images/{$product->id}", ['disk' =>   'public']);
+                $image->image = $path;
+                $image->product_id = $product->id;
+                $image->save();
+            }
          }
 
         //$product = $this->repository->store(array_merge($request->all(), $data));
@@ -143,7 +145,7 @@ class ProductController extends Controller
             $this->repository->update($id, $request->all());    
         }
 
-        if($request->file('image')){
+        if($request->file('image') && isset($request->image)){
         foreach ($request->file('image') as $imagefile) {
             $image = new Images;
              $path = $imagefile->store("/product-images/{$id}", ['disk' =>   'public']);

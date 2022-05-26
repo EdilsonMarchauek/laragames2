@@ -38,13 +38,13 @@
         </div><br>
     </div>  
 
-    <div class="float-sm-start">
-        @if ($product->photo)
-        <img width="130" height="165" src="{{ URL("storage/{$product->photo}") }}" alt="{{ $product->name }}">
-        @endif
-        <p style="font-size: 20px;">Jogo:</p>
-        <p><strong>Nome: </strong>{{ $product->name }}</p>
+    {{-- @if ($product->photo)
+    <img width="130" height="165" src="{{ URL("storage/{$product->photo}") }}" alt="{{ $product->name }}">
+    @endif --}}
+
+    <div class="float-sm-start" style="vertical-align:middle;">
         <p><strong>ID: </strong>{{ $product->id }}</p>
+        <p><strong>Nome: </strong>{{ $product->name }}</p>
         <p><strong>Console: </strong>{{ $product->category->title }}</p>
         <p><strong>Descrição: </strong>{{ $product->description }}</p><br>
         <form action="{{ route('products.destroy', $product->id) }}" method="POST">

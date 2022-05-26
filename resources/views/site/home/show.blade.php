@@ -17,7 +17,7 @@
 @section('content')
 
 <div class="float-sm-start" style="padding-right:5%;">
-  <div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel" width="300" style="background-color:blue;">
+  <div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel" width="300">
       <ol class="carousel-indicators">
           <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
       </ol>
@@ -39,22 +39,26 @@
   </div><br>
 </div> 
 
-<div class="float-md-start">
-    @if ($product->photo)
-    <img width="130" height="165" class="img-fluid img-thumbnail" src="{{ URL("storage/{$product->photo}") }}" alt="{{ $product->name }}">
-    @endif
-  <div class="card border-secondary mb-3" style="max-width: 18rem; border:transparent;">
-      <div class="card-header">ID: {{ $product->id }} - Detalhes</div>
-        <div class="card-body text-secondary">
-          <h5 class="card-title">Jogo: {{ $product->name }}</h5>
-          <p class="card-text"></p>
-          <p class="card-text">Console: {{ $product->category->title }}</p>
-          <p class="card-text">Descrição: {{ $product->description }}</p>
-        </div>
-        <div class="card-footer bg-transparent border-transparent">
-          <button type="button" class="btn" style="background-color: #03a9f4; color: white;" data-bs-toggle="modal" data-bs-target="#exampleModal">Solicitar Orçamento</button>
-          <a href="{{ route('site.inicio') }}" class="btn btn-success">Voltar</a>
-        </div>
+{{-- 
+@if ($product->photo)
+<img width="130" height="165" class="img-fluid img-thumbnail" src="{{ URL("storage/{$product->photo}") }}" alt="{{ $product->name }}">
+@endif --}}
+
+<div class="float-md-start"> 
+  <div class="card border-secondary mb-3" style="max-width: 300px; border:transparent;">
+      <div class="card-header">
+        ID: {{ $product->id }} - Detalhes
+      </div>  
+      <div class="card-body text-secondary">
+        <h5 class="card-title">Jogo: {{ $product->name }}</h5>
+        <p class="card-text"></p>
+        <p class="card-text">Console: {{ $product->category->title }}</p>
+        <p class="card-text">Descrição: {{ $product->description }}</p>
+    </div>
+      <div class="card-footer bg-transparent border-transparent">
+        <button type="button" class="btn" style="background-color: #03a9f4; color: white;" data-bs-toggle="modal" data-bs-target="#exampleModal">Solicitar Orçamento</button>
+        <a href="{{ route('site.inicio') }}" class="btn btn-success">Voltar</a>
+    </div>
     </div>
 </div>
 <br>   
