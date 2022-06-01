@@ -1,16 +1,16 @@
 @extends('adminlte::page')
 
-@section('title', 'Gestão de Jogos')
+@section('title', 'Gestão de Produtos')
 
 @section('content_header')
 
     <span style="font-size: 20px;"><a href="{{ route('products.create') }}" class="btn btn-success">Add</a> 
-        Jogos
+        Produto
     </span>
   
     <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="{{ route('admin') }}"> Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('products.index') }}"> Jogos</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('products.index') }}"> Produtos</a></li>
         
     </ol>   
 @stop
@@ -24,7 +24,7 @@
                     
                     @csrf
                         <select name="category" class="form-control">
-                            <option value="">Console</option>
+                            <option value="">Categoria</option>
                             {{-- Para utilizar a variavel $categories precisa criar no AppServiceProvider.php passando pra cá--}}
                             @foreach ($categories as $id => $category)
                                 <option value="{{ $id }}" @if (isset($filters['category']) && $filters['category'] == $id)
@@ -53,7 +53,7 @@
                         <tr>
                             <th scope="col" width="100">Imagem</th>
                             <th scope="col">Nome</th>
-                            <th scope="col">Console</th>
+                            <th scope="col">Categoria</th>
                             <th width="200px" scope="col">Ações</th>
                         </tr>                   
                     </thead>

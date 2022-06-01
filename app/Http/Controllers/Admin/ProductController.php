@@ -156,10 +156,46 @@ class ProductController extends Controller
         }
         //$this->repository->update($id, $request->all()); 
 
-        return redirect()
-                        ->route('products.index')
-                        ->withSuccess('Cadastro atualizado com sucesso');
-        }    
+        return back();
+
+        // return redirect()
+        //                 ->route('products.index')
+        //                 ->withSuccess('Cadastro atualizado com sucesso');
+        }  
+        
+    
+    //Apagar todas as fotos do produto
+    public function fotodestroyall($id)
+    {
+        $product = $this->repository->findById($id);
+         if(!$product)
+           return redirect()->back();
+        
+        $images = $product->imageProduct()->get();
+
+        foreach ($images as $image){
+            $image->delete();
+        }
+
+        Storage::disk('public')->deleteDirectory("/product-images/{$id}");
+
+        return redirect()->back();
+    }
+
+    //Apagar última foto do produto    
+    public function fotodestroylast($id)
+    {
+        $product = $this->repository->findById($id);
+         if(!$product)
+           return redirect()->back();
+        
+        $images = $product->imageProduct()->get()->last();
+        $images->delete();
+
+        return redirect()->back();
+    }
+
+   
     
     /**
      * Remove the specified resource from storage.

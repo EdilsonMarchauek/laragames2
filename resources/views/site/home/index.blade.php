@@ -5,7 +5,8 @@
 @section('content')
 
 <div class="content row"> 
-    <h3><br>Lista de jogos</h3>  
+
+    <h3><br>Produtos</h3>  
 
     <hr> 
 
@@ -14,7 +15,7 @@
         @csrf
         <div class="input-group" style="max-width:400px;">
             <select name="category" class="form-control">
-                <option value="">Console</option>
+                <option value="">Categoria</option>
                 {{-- Para utilizar a variavel $categories precisa criar no AppServiceProvider.php passando pra cá--}}
                 @foreach ($categories as $id => $category)
                     <option value="{{ $id }}" @if (isset($filters['category']) && $filters['category'] == $id)

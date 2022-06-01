@@ -1,16 +1,16 @@
 @extends('adminlte::page')
 
-@section('title', 'Editar Jogo')
+@section('title', 'Editar Produto')
 
 @section('content_header')
 
     <span style="font-size: 20px;">
-        Editar Jogo: {{ $product->name }}
+        Editar Produto: {{ $product->name }}
     </span>
   
     <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="{{ route('admin') }}"> Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('products.index') }}"> Jogos</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('products.index') }}"> Produtos</a></li>
         <li class="breadcrumb-item"><a href="{{ route('products.edit', $product->id) }}"> Editar</a></li>
         
     </ol>   
@@ -41,19 +41,38 @@
     </div> --}}
     
     <div align="left" style="padding-bottom:10px">
-    <hr>      
-        Capa:
+    <hr>   
+    Capa:<br>        
         @if ($product->photo)
         <img width="130" height="165" src="{{ URL("storage/{$product->photo}") }}" alt="{{ $product->name }}">
         @endif 
-    <hr>      
-        Fotos:   
+    <hr>       
+    Fotos:<br>          
         @foreach($images as $img)
             @if ($img->image)
                 <img width="130" height="165" src="{{ URL("storage/{$img->image}") }}" alt="{{ $product->name }}">
             @endif
         @endforeach
-    </div>
+    </div> 
+
+    <div class="d-flex flex-row">
+        <div class="p-2">
+        <form action="{{ route('products.fotodestroyall', $product->id) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">
+                Apagar todas</button>  
+        </form>
+        </div>    
+        <div class="p-2">
+        <form action="{{ route('products.fotodestroylast', $product->id) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">
+                Apagar última</button>  
+        </form> 
+        </div> 
+    </div>   
 
     <hr>
     

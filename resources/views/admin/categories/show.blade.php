@@ -1,15 +1,15 @@
 @extends('adminlte::page')
 
-@section('title', 'Detalhes do Console { $category->title }')
+@section('title', 'Detalhes do Categoria { $category->title }')
 
 @section('content_header')
     <span style="font-size: 20px;">
-        Console: {{ $category->title }}
+        Categoria: {{ $category->title }}
     </span>
 
     <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="{{ route('admin') }}"> Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('categories.index') }}"> Consoles</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('categories.index') }}"> Categorias</a></li>
         <li class="breadcrumb-item"><a href="{{ route('categories.show', $category->id) }}"> Detalhes</a></li>
     </ol>  
 @stop
@@ -19,7 +19,7 @@
         <div class="box">
             <div class="box-body">
                 <p><strong>ID: </strong>{{ $category->id }}</p>
-                <p><strong>Console: </strong>{{ $category->title }}</p>
+                <p><strong>Categoria: </strong>{{ $category->title }}</p>
                 <p><strong>Descrição: </strong>{{ $category->description }}</p>
 
                 <hr>

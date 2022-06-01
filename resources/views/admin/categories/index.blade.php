@@ -1,16 +1,16 @@
 @extends('adminlte::page')
 
-@section('title', 'Lista de Console')
+@section('title', 'Lista de Categoria')
 
 @section('content_header')
 
     <span style="font-size: 20px;"><a href="{{ route('categories.create') }}" class="btn btn-success">Add</a> 
-        Console
+        Categoria
     </span>
   
     <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="{{ route('admin') }}"> Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('categories.index') }}"> Consoles</a></li>      
+        <li class="breadcrumb-item"><a href="{{ route('categories.index') }}"> Categorias</a></li>      
     </ol>   
 @stop
 
@@ -40,7 +40,7 @@
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Console</th>
+                            <th scope="col">Categoria</th>
                             <th width="200px" scope="col">Ações</th>
                         </tr>                   
                     </thead>

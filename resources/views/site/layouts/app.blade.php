@@ -85,7 +85,6 @@
         </nav>
 
     <!-- Carosel -->
-    <div class="container">
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
@@ -108,7 +107,6 @@
             </button>
           </div>
         </div> 
-    </div>
 
     </div>
         <div class="container">

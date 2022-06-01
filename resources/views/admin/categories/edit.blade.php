@@ -1,15 +1,15 @@
 @extends('adminlte::page')
 
-@section('title', 'Editar Console')
+@section('title', 'Editar Categoria')
 
 @section('content_header')
     <span style="font-size: 20px;">
-        Editar Console: {{ $category->title }}
+        Editar Categoria: {{ $category->title }}
     </span>
 
     <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="{{ route('admin') }}"> Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('categories.index') }}"> Consoles</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('categories.index') }}"> Categorias</a></li>
         <li class="breadcrumb-item"><a href="{{ route('categories.edit', $category->id) }}"> Editar</a></li>
     </ol> 
 @stop

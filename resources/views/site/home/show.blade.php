@@ -21,9 +21,14 @@
       <ol class="carousel-indicators">
           <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
       </ol>
-      <div class="carousel-inner" style="max-width:300px;">
+      <div class="carousel-inner" style="max-width:300px;">   
+          <div class="carousel-item active" >
+            @if ($product->photo)
+            <img class="d-block w-110" src="{{ URL("storage/{$product->photo}") }}" alt="{{ $product->name }}">
+            @endif
+          </div>
           @foreach($images as $key => $slider)
-          <div class="carousel-item {{$key == 0 ? 'active' : '' }}">
+           <div class="carousel-item" {{$key == 0 ? 'active' : ''}}>    
               <img src="{{ URL("storage/{$slider->image}") }}" class="d-block w-110" alt="{{ URL("{$product->name}") }}"> 
           </div>
           @endforeach
@@ -47,15 +52,17 @@
 <div class="float-md-start"> 
   <div class="card border-secondary mb-3" style="max-width: 300px; border:transparent;">
       <div class="card-header">
-        ID: {{ $product->id }} - Detalhes
+        ID: {{ $product->id }} - Detalhes do produto
       </div>  
       <div class="card-body text-secondary">
-        <h5 class="card-title">Jogo: {{ $product->name }}</h5>
+        <h5 class="card-title">Nome: {{ $product->name }}</h5>
         <p class="card-text"></p>
-        <p class="card-text">Console: {{ $product->category->title }}</p>
+        <p class="card-text">Categoria: {{ $product->category->title }}</p>
         <p class="card-text">Descrição: {{ $product->description }}</p>
     </div>
       <div class="card-footer bg-transparent border-transparent">
+        {{-- Informar número do whatss app --}}
+        <a href="https://api.whatsapp.com/send?phone=5541997518499&amp;text=Olá gostaria de uma informação sobre o {{ $product->id . ' - ' . $product->name }}" target="_blank" rel="noopener noreferrer"><img src="{{URL::asset('/imgs/contatowhats.png')}}" alt="contatowhats" class="whatsapp"></a>
         <button type="button" class="btn" style="background-color: #03a9f4; color: white;" data-bs-toggle="modal" data-bs-target="#exampleModal">Solicitar Orçamento</button>
         <a href="{{ route('site.inicio') }}" class="btn btn-success">Voltar</a>
     </div>

@@ -1,15 +1,15 @@
 @extends('adminlte::page')
 
-@section('title', 'Cadastrar Novo Console')
+@section('title', 'Cadastrar Nova Categoria')
 
 @section('content_header')
     <span style="font-size: 20px;">
-        Cadastrar Novo Console
+        Cadastrar Nova Categoria
     </span>
 
     <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="{{ route('admin') }}"> Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('categories.index') }}"> Consoles</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('categories.index') }}"> Categorias</a></li>
         <li class="breadcrumb-item"><a href="{{ route('categories.create') }}"> Cadastrar</a></li>
     </ol> 
 @stop

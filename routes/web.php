@@ -23,7 +23,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 
     Route::any('products/search', [ProductController::class, 'search'])->name('products.search');
     Route::resource('products', ProductController::class);
-       
+
+    Route::any('products/fotodestroylast/{id}', [ProductController::class, 'fotodestroylast'])->name('products.fotodestroylast');
+    Route::any('products/fotodestroyall/{id}', [ProductController::class, 'fotodestroyall'])->name('products.fotodestroyall');
+      
     Route::any('categories/search', [CategoryController::class, 'search'])->name('categories.search');
     Route::resource('categories', CategoryController::class);
 

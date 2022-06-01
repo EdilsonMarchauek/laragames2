@@ -1,6 +1,6 @@
 @csrf
 <div class="form-group">
-    <input type="text" value="{{ $category->title ?? old('title') }}" name="title" class="form-control" placeholder="Console">
+    <input type="text" value="{{ $category->title ?? old('title') }}" name="title" class="form-control" placeholder="Categoria">
 </div>
 {{-- <div class="form-group">
    <input type="text" value="{{ $category->url ?? old('url') }}"  name="url" class="form-control" placeholder="URL">

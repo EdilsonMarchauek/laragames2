@@ -231,12 +231,12 @@ return [
             'url'  => 'admin',
         ],
         [
-            'text' => 'Consoles',
+            'text' => 'Categorias',
             'url'  => 'admin/categories',
             'icon' => 'fa fa-object-group',
         ],
         [
-            'text'        => 'Jogos',
+            'text'        => 'Produtos',
             'url'         => 'admin/products',
             'icon'        => 'fa fa-tasks',
         ],

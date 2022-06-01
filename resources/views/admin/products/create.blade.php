@@ -1,16 +1,16 @@
 @extends('adminlte::page')
 
-@section('title', 'Cadastrar Novo Jogo')
+@section('title', 'Cadastrar Novo Produto')
 
 @section('content_header')
 
     <span style="font-size: 20px;">
-        Cadastrar Novo Jogo
+        Cadastrar Novo Produto
     </span>
   
     <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="{{ route('admin') }}"> Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('products.index') }}"> Jogos</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('products.index') }}"> Produto</a></li>
         <li class="breadcrumb-item"><a href="{{ route('products.create') }}"> Cadastrar</a></li>
         
     </ol>   
