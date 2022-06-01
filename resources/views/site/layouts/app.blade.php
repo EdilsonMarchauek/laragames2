@@ -35,19 +35,9 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="font-size:16px;">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Quem Somos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Fale Conosco</a>
-                        </li>
-                    </ul>
-    
+                
+                    @include ('site.layouts.menu')
+
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->

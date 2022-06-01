@@ -16,7 +16,7 @@
 
 @section('content')
 
-<div class="float-sm-start" style="padding-right:5%;">
+<div class="float-sm-start" style="padding-right:5%; margin-top:3%;">
   <div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel" width="300">
       <ol class="carousel-indicators">
           <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -49,8 +49,8 @@
 <img width="130" height="165" class="img-fluid img-thumbnail" src="{{ URL("storage/{$product->photo}") }}" alt="{{ $product->name }}">
 @endif --}}
 
-<div class="float-md-start"> 
-  <div class="card border-secondary mb-3" style="max-width: 300px; border:transparent;">
+<div class="float-md-start" style="max-width: 310px; border:transparent; margin-top:3%;"> 
+  <div class="card border-secondary mb-3">
       <div class="card-header">
         ID: {{ $product->id }} - Detalhes do produto
       </div>  

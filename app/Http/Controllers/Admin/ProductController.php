@@ -31,7 +31,7 @@ class ProductController extends Controller
         $products = $this->repository
                             ->orderBy('name')
                             ->relationships('category')
-                            ->paginate(50);                     
+                            ->paginate(30);                     
         //Enviando para View
         return view('admin.products.index', compact('products'));
     }

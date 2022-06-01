@@ -21,10 +21,20 @@ class SiteController extends Controller
         $products = $this->repository
         ->orderBy('id')
         ->relationships('category')
-        ->paginate(50);
+        ->paginate(30);
 
         return view('site.home.index', compact('products', 'categories'));
     }
+
+    public function quemsomos()
+    {
+        return view('site.home.quemsomos');
+    }   
+    
+    public function faleconosco()
+    {
+        return view('site.home.faleconosco');
+    }   
 
     public function search(Request $request)
     {

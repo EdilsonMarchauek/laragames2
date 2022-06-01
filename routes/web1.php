@@ -1,16 +1,11 @@
 <?php
 
-use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\SiteController;
-use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\Admin\UserController;
-
-use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\Admin\ProductController;
 
 use App\Http\Controllers\Admin\CategoryController;
@@ -23,10 +18,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 
     Route::any('products/search', [ProductController::class, 'search'])->name('products.search');
     Route::resource('products', ProductController::class);
-
+    
     Route::any('products/fotodestroylast/{id}', [ProductController::class, 'fotodestroylast'])->name('products.fotodestroylast');
     Route::any('products/fotodestroyall/{id}', [ProductController::class, 'fotodestroyall'])->name('products.fotodestroyall');
-      
+    
     Route::any('categories/search', [CategoryController::class, 'search'])->name('categories.search');
     Route::resource('categories', CategoryController::class);
 
@@ -34,18 +29,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
     Route::get('/', [DashboardController::class, 'index'])->name('admin');
 });
 
-Auth::routes(['register' => true]);
+Auth::routes(['register' => false]);
 
-Route::get('/', [SiteController::class, 'index']);
+Route::get('/index', [SiteController::class, 'index']);
 Route::any('/search', [SiteController::class, 'search'])->name('site.search');
 Route::resource('site', SiteController::class);
 Route::get('/inicio', [SiteController::class, 'index'])->name('site.inicio');
 Route::get('/quemsomos', [SiteController::class, 'quemsomos'])->name('site.quemsomos');
 Route::get('/faleconosco', [SiteController::class, 'faleconosco'])->name('site.faleconosco');
-
-//Rota de Imagens
-Route::get('/images', [ImagesController::class, 'show']);
-Route::get('/insert-image', [ImagesController::class, 'insertImage']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -60,7 +51,12 @@ Route::get('/teste', function () {
  });
 
  Route::get('/clear', function() {
+
     Artisan::call('cache:clear');
+    
     dd("Cache Clear All");
+
 });
+
+
 

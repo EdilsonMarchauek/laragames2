@@ -40,7 +40,7 @@ class BaseEloquentRepository implements RepositoryInterface
                         ->first();
     }
 
-    public function paginate($totalPage = 50)
+    public function paginate($totalPage = 30)
     {
         return $this->entity->paginate($totalPage);
     }
