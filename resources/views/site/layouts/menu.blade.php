@@ -1,5 +1,5 @@
 <!-- Left Side Of Navbar -->
-<ul class="navbar-nav me-auto mb-2 mb-lg-0" style="font-size:16px;">
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{{ route('site.inicio') }}">Home</a>
         </li>
@@ -7,7 +7,7 @@
             <a class="nav-link" href="{{ route('site.quemsomos') }}">Quem Somos</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('site.faleconosco') }}">Fale Conosco</a>
+            <a class="nav-link" href="{{ route('email') }}">Fale Conosco</a>
         </li>
                     
 </ul>

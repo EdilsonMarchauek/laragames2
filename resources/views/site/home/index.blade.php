@@ -34,7 +34,7 @@
    
    @foreach ($products as $product)
         <div class="card mx-auto" style="width: 12rem; margin:7px; padding: 10px;" >
-            @if ($product->photo)
+            @if ($product->photo && Storage::exists($product->photo))
             <a style="text-decoration:none" href="{{ route('site.show', $product->id)}}"><img style="max-width: 100%; height: auto;" src="{{ URL("storage/{$product->photo}") }}" class="card-img-top" alt="{{ $product->name }}"></a>
             @endif
             <div class="card-body">

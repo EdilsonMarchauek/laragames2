@@ -23,7 +23,7 @@
       </ol>
       <div class="carousel-inner" style="max-width:300px;">   
           <div class="carousel-item active" >
-            @if ($product->photo)
+            @if ($product->photo && Storage::exists($product->photo))
             <img class="d-block w-110" src="{{ URL("storage/{$product->photo}") }}" alt="{{ $product->name }}">
             @endif
           </div>
@@ -63,14 +63,16 @@
       <div class="card-footer bg-transparent border-transparent">
         {{-- Informar número do whatss app --}}
         <a href="https://api.whatsapp.com/send?phone=5541997518499&amp;text=Olá gostaria de uma informação sobre o {{ $product->id . ' - ' . $product->name }}" target="_blank" rel="noopener noreferrer"><img src="{{URL::asset('/imgs/contatowhats.png')}}" alt="contatowhats" class="whatsapp"></a>
-        <button type="button" class="btn" style="background-color: #03a9f4; color: white;" data-bs-toggle="modal" data-bs-target="#exampleModal">Solicitar Orçamento</button>
-        <a href="{{ route('site.inicio') }}" class="btn btn-success">Voltar</a>
+        <a href="{{ route('email') }}" class="btn" style="background-color: #03a9f4; color: white;">Solicitar Orçamento</a> 
+        <a href="{{ route('site.inicio') }}" class="btn btn-success">Voltar</a> 
     </div>
     </div>
 </div>
 <br>   
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+{{-- <button type="button" class="btn" style="background-color: #03a9f4; color: white;" data-bs-toggle="modal" data-bs-target="#exampleModal">Solicitar Orçamento</button> --}}
+
+{{-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -95,7 +97,7 @@
       </div>
     </div>
   </div>
-</div>    
+</div>     --}}
 
 @endsection
 

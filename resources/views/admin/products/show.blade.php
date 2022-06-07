@@ -21,7 +21,7 @@
         </ol>
         <div class="carousel-inner" style="max-width:300px;">   
             <div class="carousel-item active" >
-              @if ($product->photo)
+                @if ($product->photo && Storage::exists($product->photo))
               <img class="d-block w-110" src="{{ URL("storage/{$product->photo}") }}" alt="{{ $product->name }}">
               @endif
             </div>

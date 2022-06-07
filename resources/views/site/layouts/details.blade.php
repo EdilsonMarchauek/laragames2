@@ -7,7 +7,7 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
     
-        <title>{{ 'Gestão de Jogos - Luna Sistemas' }}</title>
+        <title>{{ 'Gestão de Produtos - Luna Sistemas' }}</title>
     
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
@@ -32,7 +32,6 @@
         @else
             <link rel="stylesheet" href="{{ mix(config('adminlte.laravel_mix_css_path', 'css/app.css')) }}">
         @endif
-
 
         {{-- Base Scripts --}}
         @if(!config('adminlte.enabled_laravel_mix'))
@@ -108,6 +107,5 @@
         <!-- define um template -->
         @yield('content')
     </div>
-
 </body>
 </html>

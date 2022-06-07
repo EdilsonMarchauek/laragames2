@@ -61,7 +61,7 @@
                         @foreach ($products as $product)
                         <tr>
                             <td valign="center">
-                                @if ($product->photo)
+                                @if ($product->photo && Storage::exists($product->photo))
                                 <a style="text-decoration:none" href="{{ route('site.show', $product->id)}}">
                                 <img width="130" height="165" src="{{ URL("storage/{$product->photo}") }}" alt="{{ $product->name }}"></a>
                                 @endif

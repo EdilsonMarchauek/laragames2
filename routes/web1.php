@@ -5,9 +5,10 @@ use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\MailerController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\ProductController;
 
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 
@@ -21,7 +22,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
     
     Route::any('products/fotodestroylast/{id}', [ProductController::class, 'fotodestroylast'])->name('products.fotodestroylast');
     Route::any('products/fotodestroyall/{id}', [ProductController::class, 'fotodestroyall'])->name('products.fotodestroyall');
-    
+    Route::any('products/capadestroy/{id}', [ProductController::class, 'capadestroy'])->name('products.capadestroy');
+  
     Route::any('categories/search', [CategoryController::class, 'search'])->name('categories.search');
     Route::resource('categories', CategoryController::class);
 
@@ -37,6 +39,10 @@ Route::resource('site', SiteController::class);
 Route::get('/inicio', [SiteController::class, 'index'])->name('site.inicio');
 Route::get('/quemsomos', [SiteController::class, 'quemsomos'])->name('site.quemsomos');
 Route::get('/faleconosco', [SiteController::class, 'faleconosco'])->name('site.faleconosco');
+
+//PHP Mailer
+Route::get("email", [MailerController::class, "email"])->name("email");
+Route::post("send-email", [MailerController::class, "composeEmail"])->name("send-email");
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

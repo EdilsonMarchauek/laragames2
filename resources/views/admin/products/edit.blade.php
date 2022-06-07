@@ -43,10 +43,22 @@
     <div align="left" style="padding-bottom:10px">
     <hr>   
     Capa:<br>        
-        @if ($product->photo)
+        @if ($product->photo && Storage::exists($product->photo))
         <img width="130" height="165" src="{{ URL("storage/{$product->photo}") }}" alt="{{ $product->name }}">
         @endif 
-    <hr>       
+        <div class="d-flex flex-row">
+            <div class="p-2">
+                <form action="{{ route('products.capadestroy', $product->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">
+                        Apagar capa</button>  
+                </form>    
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div align="left" style="padding-bottom:10px">       
     Fotos:<br>          
         @foreach($images as $img)
             @if ($img->image)

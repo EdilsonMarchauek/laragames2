@@ -133,6 +133,16 @@ class ProductController extends Controller
      */
     public function update(StoreUpdateProductFormRequest $request, $id)
     {
+        if($request->file('image') && isset($request->image)){
+            foreach ($request->file('image') as $imagefile) {
+                $image = new Images;
+                 $path = $imagefile->store("/product-images/{$id}", ['disk' =>   'public']);
+                 $image->image = $path;
+                 $image->product_id = $id;
+                 $image->save();
+        }
+        }
+
         if ($request->hasFile('photo') && $request->photo->isValid()){
             $nameFile = $request->name . '.' . $request->photo->extension();    
             $imagePath = $request->photo->storeAs('products', $nameFile);
@@ -144,16 +154,7 @@ class ProductController extends Controller
         }else{
             $this->repository->update($id, $request->all());    
         }
-
-        if($request->file('image') && isset($request->image)){
-        foreach ($request->file('image') as $imagefile) {
-            $image = new Images;
-             $path = $imagefile->store("/product-images/{$id}", ['disk' =>   'public']);
-             $image->image = $path;
-             $image->product_id = $id;
-             $image->save();
-        }
-        }
+ 
         //$this->repository->update($id, $request->all()); 
 
         return back();
@@ -162,8 +163,21 @@ class ProductController extends Controller
         //                 ->route('products.index')
         //                 ->withSuccess('Cadastro atualizado com sucesso');
         }  
-        
-    
+       
+    //Apagar capa do produto    
+    public function capadestroy($id)
+    {
+        $product = $this->repository->findById($id);
+        if(!$product)
+          return redirect()->back();
+
+        if ($product->photo && Storage::exists($product->photo)) {
+            Storage::delete($product->photo);
+        }    
+
+        return redirect()->back();
+    }
+
     //Apagar todas as fotos do produto
     public function fotodestroyall($id)
     {
@@ -195,8 +209,6 @@ class ProductController extends Controller
         return redirect()->back();
     }
 
-   
-    
     /**
      * Remove the specified resource from storage.
      *
