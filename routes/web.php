@@ -52,6 +52,8 @@ Route::get('/insert-image', [ImagesController::class, 'insertImage']);
 //PHP Mailer
 Route::get("email", [MailerController::class, "email"])->name("email");
 Route::post("send-email", [MailerController::class, "composeEmail"])->name("send-email");
+Route::get("orcamento/{id}", [MailerController::class, "orcamento"])->name("orcamento");
+Route::post("send-orcamento", [MailerController::class, "composeOrcamento"])->name("send-orcamento");
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

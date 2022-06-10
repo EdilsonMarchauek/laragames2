@@ -6,12 +6,6 @@
     <span style="font-size: 20px;">
         Jogo: {{ $product->name }}
     </span>
-
-    <ol class="breadcrumb float-sm-right">
-        <li class="breadcrumb-item"><a href="{{ route('home') }}"> Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('products.index') }}"> Jogos</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('products.show', $product->id) }}"> Detalhes</a></li>
-    </ol>  
 @stop
 
 @section('content')
@@ -63,7 +57,7 @@
       <div class="card-footer bg-transparent border-transparent">
         {{-- Informar número do whatss app --}}
         <a href="https://api.whatsapp.com/send?phone=5541997518499&amp;text=Olá gostaria de uma informação sobre o {{ $product->id . ' - ' . $product->name }}" target="_blank" rel="noopener noreferrer"><img src="{{URL::asset('/imgs/contatowhats.png')}}" alt="contatowhats" class="whatsapp"></a>
-        <a href="{{ route('email') }}" class="btn" style="background-color: #03a9f4; color: white;">Solicitar Orçamento</a> 
+        <a href="{{ route('orcamento', $product->id) }}" class="btn" style="background-color: #03a9f4; color: white;">Solicitar Orçamento</a> 
         <a href="{{ route('site.inicio') }}" class="btn btn-success">Voltar</a> 
     </div>
     </div>
