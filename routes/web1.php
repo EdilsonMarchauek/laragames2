@@ -9,10 +9,14 @@ use App\Http\Controllers\MailerController;
 use App\Http\Controllers\Admin\UserController;
 
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ReportsController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
+
+    //Reports
+    Route::get('reports/months', [ReportsController::class, 'months'])->name('reports.months');
 
     Route::any('users/search', [UserController::class, 'search'])->name('users.search');
     Route::resource('users', UserController::class);

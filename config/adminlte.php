@@ -245,8 +245,18 @@ return [
             'url'         => 'admin/users',
             'icon'        => 'fa fa-users',
         ],
-    ],
-
+        [
+            'text'    => 'Relatórios',
+            'icon'    => 'fa fa-chart-area',
+            'submenu' => [
+                [
+                    'text' => 'Meses',
+                    'url'  => 'admin/reports/months',
+                    'icon'    => 'fa fa-chart-bar',
+                ],
+            ],
+        ]
+    ],    
     /*
     |--------------------------------------------------------------------------
     | Menu Filters
@@ -317,16 +327,16 @@ return [
         //         ],
         //     ],
         // ],
-        // 'Chartjs' => [
-        //     'active' => false,
-        //     'files' => [
-        //         [
-        //             'type' => 'js',
-        //             'asset' => false,
-        //             'location' => '//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js',
-        //         ],
-        //     ],
-        // ],
+        'Chartjs' => [
+            'active' => true,
+            'files' => [
+                 [
+                     'type' => 'js',
+                     'asset' => false,
+                     'location' => '//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js',
+                ],
+             ],
+        ],
         // 'Sweetalert2' => [
         //     'active' => false,
         //     'files' => [

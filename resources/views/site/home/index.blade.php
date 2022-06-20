@@ -54,5 +54,8 @@
         @else
             {!! $products->links("pagination::bootstrap-4") !!} 
         @endif
+
+
+        @include ('site.layouts.footer')    
     
 @stop
