@@ -30,6 +30,12 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class, 'sales')
+                        ->withPivot('qty', 'price');
+    }
+
     //Has Many - Relacionamento de um para muitos
     public function imageProduct()
     {
