@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Charts\ReportsChart;
+use App\Enum\Enum;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\ReportsRepositoryInterface;
@@ -20,19 +21,27 @@ class ReportsController extends Controller
 
     public function months(ReportsChart $chart)
     {
-        $chart->labels(['JAN', 'FEV', 'MAR']);
+        //Importou a classe de Enum chamando o método months()
+        $chart->labels(Enum::months());
 
         //Chamando o método do QueryBuilder / QueryBuilderReportsRepository
-        $chart->dataset('2021', 'bar', $this->repository->byMonths(2021));
+        $chart->dataset('2019', 'bar', $this->repository->byMonths(2019));
+        $chart->dataset('2020', 'bar', $this->repository->byMonths(2020));
 
         //Formato: line
-        $chart->dataset('2022', 'bar', [
-            12, 14, 16
-        ])
+        $chart->dataset('2021', 'bar', $this->repository->byMonths(2021))
         ->options([
             'backgroundColor' => '#999',
         ]);
 
+        return view('admin.charts.chart', compact('chart'));
+    }
+
+    public function months2()
+    {
+        //$chart = $this->repository->getReports(2016, 2018, 'line');
+        $chart = $this->repository->getReports();
+        
         return view('admin.charts.chart', compact('chart'));
     }
 }

@@ -16,7 +16,7 @@ use App\Http\Controllers\Admin\DashboardController;
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 
     //Reports
-    Route::get('reports/months', [ReportsController::class, 'months'])->name('reports.months');
+    Route::get('reports/months', [ReportsController::class, 'months2'])->name('reports.months');
 
     Route::any('users/search', [UserController::class, 'search'])->name('users.search');
     Route::resource('users', UserController::class);
