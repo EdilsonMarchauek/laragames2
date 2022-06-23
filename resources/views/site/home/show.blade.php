@@ -46,12 +46,18 @@
 <div class="float-md-start" style="max-width: 310px; border:transparent; margin-top:3%;"> 
   <div class="card border-secondary mb-3">
       <div class="card-header">
-        ID: {{ $product->id }} - Detalhes do produto
+         Detalhes do produto
       </div>  
       <div class="card-body text-secondary">
         <h5 class="card-title">Nome: {{ $product->name }}</h5>
         <p class="card-text"></p>
+        @if($product->code)
+          <p class="card-text">Código: {{ $product->code }}</p>
+        @endif
         <p class="card-text">Categoria: {{ $product->category->title }}</p>
+        @if($product->price)
+          <p class="card-text">Preço: {{ $product->price }}</p>
+        @endif
         <p class="card-text">Descrição: {{ $product->description }}</p>
     </div>
       <div class="card-footer bg-transparent border-transparent">

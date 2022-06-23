@@ -57,9 +57,11 @@ class MailerController extends Controller {
             . '<br>' .
             'Telefone..: ' . $request->telefone 
             . '<br>' .
-            'Código....: ' . $request->id 
+            'Código....: ' . $request->code 
             . '<br>' .
             'Produto...: ' . $request->produto
+            . '<br>' .
+            'Preço...: ' . $request->price
             . '<br>' .
             'Quantidade: ' . $request->qtde 
             . '<br>' .

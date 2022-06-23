@@ -47,9 +47,15 @@
     @endif --}}
 
     <div class="float-sm-start" style="vertical-align:middle;">
-        <p><strong>ID: </strong>{{ $product->id }}</p>
+        <p><strong>ID: {{ $product->id }} - Detalhes do Produto </strong></p>
         <p><strong>Nome: </strong>{{ $product->name }}</p>
+        @if($product->code)
+            <p class="card-text"><strong>Código: </strong>{{ $product->code }}</p>
+        @endif
         <p><strong>Categoria: </strong>{{ $product->category->title }}</p>
+        @if($product->price)
+            <p class="card-text"><strong>Preço: </strong>{{ $product->price }}</p>
+        @endif
         <p><strong>Descrição: </strong>{{ $product->description }}</p><br>
         <form action="{{ route('products.destroy', $product->id) }}" method="POST">
             @csrf

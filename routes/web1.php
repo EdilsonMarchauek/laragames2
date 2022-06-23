@@ -18,7 +18,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
     //Reports
     Route::get('reports/years', [ReportsController::class, 'year'])->name('reports.year');
     Route::get('reports/months', [ReportsController::class, 'months2'])->name('reports.months');
-
+ 
     Route::any('users/search', [UserController::class, 'search'])->name('users.search');
     Route::resource('users', UserController::class);
 

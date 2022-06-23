@@ -26,10 +26,11 @@
 
                         <div class="card-body">
                             <div class="form-group">
-                                Código: {{ $products->id . '  -  ' }}
+                                Código: {{ $products->code . '  -  ' }}
                                 Produto: {{ $products->name }}
-                                <input type="hidden" name="id" id="id" value="{{ $products->id }}">
-                                <input type="hidden" name="produto" id="produto" value="{{ $products->name }}">    
+                                <input type="hidden" name="code" id="code" value="{{ $products->code }}">
+                                <input type="hidden" name="produto" id="produto" value="{{ $products->name }}">
+                                <input type="hidden" name="price" id="price" value="{{ $products->price }}">    
                             </div>
 
                             <div class="form-group">

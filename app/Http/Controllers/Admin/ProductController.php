@@ -66,7 +66,11 @@ class ProductController extends Controller
          // primeira forma de cadastrar
          $category = Category::find($request->category_id);
          //products() - Models/Category.php
-         $product = $category->products()->create(array_merge($request->all(), $data));
+         if ($request->hasFile('photo')){
+            $product = $category->products()->create(array_merge($request->all(), $data));
+         }else{
+            $product = $category->products()->create(array_merge($request->all()));
+         }
 
          if($request->file('image') && isset($request->image)){
             foreach ($request->file('image') as $imagefile) {
