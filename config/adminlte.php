@@ -252,7 +252,12 @@ return [
                 [
                     'text' => 'Meses',
                     'url'  => 'admin/reports/months',
-                    'icon'    => 'fa fa-chart-bar',
+                    'icon'    => 'fa fa-chart-line',
+                ],
+                [
+                    'text' => 'Anual',
+                    'url'  => 'admin/reports/years',
+                    'icon'    => 'fa fa-chart-pie',
                 ],
             ],
         ]
