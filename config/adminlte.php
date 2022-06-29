@@ -259,6 +259,11 @@ return [
                     'url'  => 'admin/reports/years',
                     'icon'    => 'fa fa-chart-pie',
                 ],
+                [
+                    'text' => 'Vue.js',
+                    'url'  => 'admin/reports/vue',
+                    'icon'    => 'fa fa-chart-bar',
+                ],
             ],
         ]
     ],    

@@ -15,6 +15,9 @@ use App\Http\Controllers\Admin\DashboardController;
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 
+    //VueJs
+    Route::get('reports/vue', [ReportsController::class, 'vue'])->name('reports.vue');
+    
     //Reports
     Route::get('reports/years', [ReportsController::class, 'year'])->name('reports.year');
     Route::get('reports/months', [ReportsController::class, 'months2'])->name('reports.months');

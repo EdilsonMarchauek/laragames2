@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\ReportsApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +18,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//Reports com Vue
+Route::group(['prefix' => 'reports', 'namespace' => 'Api'], function(){
+    Route::get('months', [ReportsApiController::class, 'months']);
+    // Route::get('years', [ReportsApiController::class, 'year']);
+});
+//http://curso-laravel-repositories.test/api/reports/months
