@@ -17,7 +17,12 @@ class ReportsApiController extends Controller
 
     public function months(Request $request)
     {
-        $response = $this->repository->getReportsMonthByYear(2021);
+        //Casting - especificando que o valor será um inteiro
+        //$year = (int) $request->input('year', date('Y'));
+        $year = (int) $request->input('year', 2021);
+
+        //Pega o valor do year passado ou 2018 pré-fixado
+        $response = $this->repository->getReportsMonthByYear($year);
         
         return response()->json($response);
 
