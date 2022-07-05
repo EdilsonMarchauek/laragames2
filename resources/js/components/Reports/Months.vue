@@ -55,7 +55,9 @@ export default{
         loadData (){
             this.loading = true
 
-            axios.get('/api/reports/months')
+            const params = { year: this.yearFilter }
+
+            axios.get('/api/reports/months', { params })
                 .then(response => {
                     this.labels = response.data.labels
                     this.datasets[0].data = response.data.values
